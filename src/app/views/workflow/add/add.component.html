@@ -1,0 +1,38 @@
+<form [formGroup]="workflowForm" (ngSubmit)="onAdd(workflowForm.value)">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<label class="control-label">workflow nom
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="Workflow" id="Workflow" type="text" formControlName="nom" required="true"/>
+			</div>
+			<div class="col" style="padding: 5px 0 5px 2%;">
+				  <mat-form-field class="max">
+					<mat-label>Worflows</mat-label>
+					<mat-select multiple formControlName="parent">
+					  <mat-option *ngFor="let workflow of workflows" [value]="workflow.workFlowId">{{workflow.nom}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="category form-category">
+			<span class="star" style="color: red;">*</span> Required fields
+		</div>
+		<div class="text-center">
+			<button
+			  *ngIf="action === 'Modifier'"
+			  type="submit"
+			  class="btn btn-primary"
+			  [mat-dialog-close]="true"
+			  cdkFocusInitial
+			>
+			  {{ action }}
+			</button>
+			<button *ngIf="action === 'Ajouter'" type="submit" class="btn btn-primary" disabled>
+			  {{ action }}
+			</button>
+		  </div>
+
+	</div>
+</form>

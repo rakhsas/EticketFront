@@ -1,0 +1,63 @@
+<form style="width: 100%;">
+	<div class="mb-1 row">
+		<label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+		<div class="col-xs-3 col-sm-auto">
+			<input
+				id="table-complete-search"
+				type="text"
+				class="form-control"
+				name="searchTerm"
+				[(ngModel)]="service.searchTerm"
+			/>
+		</div>
+		<span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
+		<div class="spinner-border" role="status" *ngIf="service.loading$ | async">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<div class="table-responsive"><table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col" sortable="nomClient" (sort)="onSort($event)">nomClient</th>
+					<th scope="col" sortable="caissier" (sort)="onSort($event)">caissier</th>
+					<th scope="col" sortable="modePaiement" (sort)="onSort($event)">modePaiement</th>
+					<th scope="col" sortable="montantHT" (sort)="onSort($event)">montantHT</th>
+					<th scope="col" sortable="montantTTC" (sort)="onSort($event)">montantTTC</th>
+					<th scope="col" sortable="montantTVA" (sort)="onSort($event)">montantTVA</th>
+					<th scope="col" sortable="nticket" (sort)="onSort($event)">nTicket</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let hist of hists$ | async">
+					<th scope="row">{{hist.nligne}}</th>
+					<td><ngb-highlight [result]="hist.nomClient" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="hist.caissier" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="hist.modePaiement" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="hist.montantHT.toString()" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="hist.montantTTC.toString()" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="hist.montantTVA.toString()" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="hist.nticket" [term]="service.searchTerm"></ngb-highlight></td>
+					<td>
+						<button type="button" rel="tooltip" class="btn btn-success" (click)="openDialog(hist)">
+							<i class="material-icons">edit</i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+</div>
+	</div>
+	<div class="d-flex justify-content-between p-2">
+		<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+		</ngb-pagination>
+
+		<select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+			<option [ngValue]="2">2 items per page</option>
+			<option [ngValue]="4">4 items per page</option>
+			<option [ngValue]="6">6 items per page</option>
+		</select>
+	</div>
+</form>

@@ -1,0 +1,115 @@
+<form [formGroup]="userForm" (ngSubmit)="onAdd(userForm.value)">
+	<!-- <div class="card-content"> -->
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label class="control-label">Prenom
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="prenom" id="prenom" type="text" formControlName="prenomUser" required="true"/>
+			</div>
+			<div class="form-group col-md-4">
+				<label class="control-label">Nom
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="nom" type="text" formControlName="nomUser" id="nom" required="true"/>
+			</div>
+			<div class="form-group col-md-4">
+				<label class="control-label">login
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="login" type="text" formControlName="login" id="login" required="true"/>
+			</div>
+		</div>
+		<div class="row" style="padding: 15px 0;">
+			<div class="form-group col-md-4">
+				<label class="control-label">Mot de pass
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input type="password"
+				id="mdp" name="mdp" formControlName="motPasse"
+				class="form-control" required autocomplete="current-password"/>
+			</div>
+			<div class="form-group col-md-4">
+				<label class="control-label">Co_NO
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="cO_NO" type="text" formControlName="cO_NO" id="Co_NO" required="true"/>
+			</div>
+			<div class="form-group col-md-4" style="padding: 5px 0 5px 0;">
+				  <mat-form-field class="max">
+					<mat-label>Caisses</mat-label>
+					<mat-select multiple formControlName="assignedCaisses">
+					  <mat-option *ngFor="let caisse of Caisses" [value]="caisse.caisseId">{{caisse.nomCaisse}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4">
+				<mat-form-field class="max">
+					<mat-label>Profile</mat-label>
+					<mat-select formControlName="profil">
+						<mat-option *ngFor="let profile of profiles" [value]="profile.profilId">
+							{{ profile.nomProfil }}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-md-4">
+				<mat-form-field class="max">
+					<mat-label>Voir Tout Document</mat-label>
+					<mat-select formControlName="toutDocument">
+						<mat-option [value]="true">Oui</mat-option>
+						<mat-option  [value]="false">Non</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-md-4">
+				<mat-form-field class="max">
+					<mat-label>Modifier les Mot de Passes?</mat-label>
+					<mat-select formControlName="updatePassword">
+						<mat-option [value]="true">Oui</mat-option>
+						<mat-option [value]="false">Non</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<mat-form-field>
+					<mat-label>Actif</mat-label>
+					<mat-select formControlName="actif">
+						<mat-option [value]="true">Oui</mat-option>
+						<mat-option [value]="false">Non</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-md-6">
+				<mat-form-field>
+					<mat-label>Departements</mat-label>
+					<mat-select formControlName="departement">
+						<mat-option *ngFor="let departement of departements" [value]="departement.departement_id">{{departement.departement}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="category form-category">
+			<span class="star" style="color: red;">*</span> Required fields
+		</div>
+		<div class="text-center">
+			<button
+			  *ngIf="action === 'Modifier'"
+			  type="submit"
+			  class="btn btn-primary"
+			  [mat-dialog-close]="true"
+			  cdkFocusInitial
+			>
+			  {{ action }}
+			</button>
+			<button *ngIf="action === 'Ajouter'" type="submit" class="btn btn-primary">
+			  {{ action }}
+			</button>
+		  </div>
+
+	<!-- </div> -->
+</form>

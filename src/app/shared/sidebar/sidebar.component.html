@@ -1,0 +1,32 @@
+<div class="bg-white" id="sidebar-wrapper">
+	<div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+	  <i class="fas fa-user-secret me-2"></i>Admin
+	</div>
+	<div class="list-group list-group-flush my-3">
+	  <div class="list-group">
+		<ng-container *ngFor="let menu of menuItems; let i = index">
+		  <a class="list-group-item list-group-item-action bg-transparent second-text fw-bold btn-toggle"
+			*ngIf="menu.children && menu.children.length > 0"
+			data-bs-toggle="collapse"
+			[attr.data-bs-target]="'#collapse-' + i">
+			{{ menu.title }}
+		  </a>
+		  <div class="collapse hide" [attr.id]="'collapse-' + i">
+			<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+			  <li *ngFor="let childRoute of menu.children">
+				<a class="link-dark rounded"
+					[routerLink]="[menu.path, childRoute.path]">
+					{{ childRoute.title }}
+				</a>
+			  </li>
+			</ul>
+		  </div>
+		  <a [routerLink]="['dashboard', menu.path]"
+			class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
+			*ngIf="!(menu.children && menu.children.length > 0)">
+			{{ menu.title }}
+		  </a>
+		</ng-container>
+	  </div>
+	</div>
+  </div>

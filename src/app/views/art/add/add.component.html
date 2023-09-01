@@ -1,0 +1,42 @@
+<form [formGroup]="artForm" (ngSubmit)="onAdd(artForm.value)">
+	<!-- <div class="card-content"> -->
+		<div class="row justify-content-md-between">
+			<div class="form-group col-md-4">
+				<label class="control-label">Compteur
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="compteur" id="compteur" type="text" formControlName="cpt" required="true"/>
+			</div>
+			<div class="form-group col-md-4">
+				<label class="control-label">JTL
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="jtl" type="text" formControlName="jtl" id="jtl" required="true"/>
+			</div>
+			<div class="form-group col-md-4">
+				<label class="control-label">Libele
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="libel" type="text" formControlName="libel" id="libel" required="true"/>
+			</div>
+		</div>
+		<div class="category form-category">
+			<span class="star" style="color: red;">*</span> Required fields
+		</div>
+		<div class="text-center">
+			<button
+			  *ngIf="action === 'Modifier'"
+			  type="submit"
+			  class="btn btn-primary"
+			  [mat-dialog-close]="true"
+			  cdkFocusInitial
+			>
+			  {{ action }}
+			</button>
+			<button *ngIf="action === 'Ajouter'" type="submit" class="btn btn-primary">
+			  {{ action }}
+			</button>
+		  </div>
+
+	<!-- </div> -->
+</form>

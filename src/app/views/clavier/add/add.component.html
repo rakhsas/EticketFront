@@ -1,0 +1,30 @@
+<form [formGroup]="clavierForm" (ngSubmit)="onAdd(clavierForm.value)">
+	<!-- <div class="card-content"> -->
+		<div class="row justify-content-md-between">
+			<div class="form-group">
+				<label class="control-label">Libelle
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="Libelle" id="Libelle" type="text" formControlName="libelle" required="true"/>
+			</div>
+		</div>
+		<div class="category form-category">
+			<span class="star" style="color: red;">*</span> Required fields
+		</div>
+		<div class="text-center">
+			<button
+			  *ngIf="action === 'Modifier'"
+			  type="submit"
+			  class="btn btn-primary"
+			  [mat-dialog-close]="true"
+			  cdkFocusInitial
+			>
+			  {{ action }}
+			</button>
+			<button *ngIf="action === 'Ajouter'" type="submit" class="btn btn-primary" disabled>
+			  {{ action }}
+			</button>
+		  </div>
+
+	<!-- </div> -->
+</form>
