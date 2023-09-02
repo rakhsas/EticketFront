@@ -5,26 +5,29 @@
 	<div class="list-group list-group-flush my-3">
 	  <div class="list-group">
 		<ng-container *ngFor="let menu of menuItems; let i = index">
-		  <a class="list-group-item list-group-item-action bg-transparent second-text fw-bold btn-toggle"
+		  <a class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
 			*ngIf="menu.children && menu.children.length > 0"
 			data-bs-toggle="collapse"
-			[attr.data-bs-target]="'#collapse-' + i">
+			[attr.data-bs-target]="'#collapse-' + i"><i [class]="menu.icon"></i>
 			{{ menu.title }}
 		  </a>
 		  <div class="collapse hide" [attr.id]="'collapse-' + i">
 			<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-			  <li *ngFor="let childRoute of menu.children">
-				<a class="link-dark rounded"
-					[routerLink]="[menu.path, childRoute.path]">
-					{{ childRoute.title }}
-				</a>
-			  </li>
+				<li *ngFor="let childRoute of menu.children">
+					<a class="list-group-item list-group-item-action second-text fw-bold child-item"
+						[routerLink]="[menu.path, childRoute.path]"
+						[class.active]="selectedMenuItem === menu.path"
+						(mouseover)="hoveredMenuItem = menu.path"
+						(mouseout)="hoveredMenuItem = null"><i [class]="childRoute.icon"></i> &nbsp;
+						{{ childRoute.title }}
+					</a>
+				</li>
 			</ul>
 		  </div>
 		  <a [routerLink]="['dashboard', menu.path]"
 			class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
 			*ngIf="!(menu.children && menu.children.length > 0)">
-			{{ menu.title }}
+			{{ menu.title + 'sssssssssss'}}
 		  </a>
 		</ng-container>
 	  </div>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
+import { Departement } from '../models/departement';
 
 
 @Injectable({
@@ -24,4 +25,8 @@ export class departementService{
 	addDepartement(form: any): Observable<any> {
 		return this.http.post(this.URL + 'departement', form);
 	}
+	updateDepartement(form: Departement): Observable<any> {
+		return this.http.put(this.URL + 'departement/' + form.departement_id, form);
+	}
+
 }

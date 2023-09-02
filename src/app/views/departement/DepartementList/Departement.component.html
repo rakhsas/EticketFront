@@ -23,21 +23,20 @@
 				<th scope="col" sortable="libelle" (sort)="onSort($event)">Type Departement</th>
 				<th scope="col" sortable="departement" (sort)="onSort($event)">Departement Parent</th>
 				<th scope="col">Responsable</th>
-				<th scope="col" sortable="nomUser" (sort)="onSort($event)">Type</th>
-				<!-- <th scope="col">Actions</th> -->
+				<th scope="col">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let departement of departements$ | async">
+			<tr *ngFor="let departement of departements$ | async" (click)="showRow(departement)">
 				<th scope="row">{{departement.departement_id}}</th>
 				<td><ngb-highlight [result]="departement.departement" [term]="service.searchTerm"></ngb-highlight></td>
 				<td><ngb-highlight [result]="departement.typeDepartement.libelle" [term]="service.searchTerm"></ngb-highlight></td>
-				<td>{{ departement.departementParent ? departement.departementParent.departement : "NULL"}}</td>
+				<td>{{ departement.departementParent ? departement.departementParent.departement : ''}}</td>
 				<td><ngb-highlight [result]="departement.responsable.nomUser" [term]="service.searchTerm"></ngb-highlight></td>
 				<td>
-				<!-- <button type="button" rel="tooltip" class="btn btn-success" (click)="openDialog(departement)">
+				<button type="button" rel="tooltip" class="btn btn-success" (click)="openDialog(departement)">
 					<i class="material-icons">edit</i>
-				</button> -->
+				</button>
 				</td>
 			</tr>
 		</tbody>

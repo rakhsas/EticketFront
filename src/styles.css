@@ -1,11 +1,12 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 :root {
-    --main-bg-color: #009d63;
-    --main-text-color: #009d63;
-    --second-text-color: #bbbec5;
-    --second-bg-color: #c1efde;
-  }
+  --primary-bg-color: #007bff;      /* Dark blue, suitable for headings and primary elements */
+  --secondary-bg-color: #17a2b8;    /* Teal, for buttons and highlights */
+  --background-color: #f8f9fa;      /* Light gray, for background */
+  --text-color: #343a40;            /* Dark gray, for text */
+  --success-color: #28a745;         /* Green, for success or positive feedback */
+}
 
   .primary-text {
     color: var(--main-text-color);
@@ -27,17 +28,12 @@
     border-radius: 100%;
   }
 
+
   #wrapper {
     overflow-x: hidden;
-    background-image: linear-gradient(
-      to right,
-      #baf3d7,
-      #c2f5de,
-      #cbf7e4,
-      #d4f8ea,
-      #ddfaef
-    );
+    background-color: #F5F7FF;
   }
+
 
   #sidebar-wrapper {
     min-height: 100vh;
@@ -70,7 +66,7 @@
   }
 
   .list-group-item {
-    border: none;
+    /* border: none; */
     padding: 20px 30px;
   }
 

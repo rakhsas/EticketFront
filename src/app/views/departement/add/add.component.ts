@@ -10,22 +10,22 @@ import { typeDepartementService } from 'src/app/services/typeDepartement.service
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+	selector: 'app-add',
+	templateUrl: './add.component.html',
+	styleUrls: ['./add.component.css']
 })
 export class AddComponent {
-  @Input() departementData!: Departement;
+	@Input() departementData!: Departement;
 	departements: Departement[] = [];
 	responsables: User[] = [];
-  typeDepartements: TypeDepartement[] = []
+	typeDepartements: TypeDepartement[] = []
 	departementForm: FormGroup;
 	action: String = "Ajouter";
 
 	constructor(
-    private departementService: departementService,
+		private departementService: departementService,
 		private userService: UserService,
-    private typeDepartement: typeDepartementService,
+		private typeDepartement: typeDepartementService,
 		public dialog: MatDialog,
 		public _snackBar: MatSnackBar,
 		private formBuilder: FormBuilder,
@@ -37,19 +37,18 @@ export class AddComponent {
 			departementParent: '',
 			typeDepartement: '',
 			responsable: '',
-		  });
+		});
 	}
-	ngOnInit(){
-		if (this.departementData)
-		{
+	ngOnInit() {
+		if (this.departementData) {
 			console.log(this.departementData)
 			this.departementForm.patchValue({
-			  departement_id: this.departementData.departement_id,
-			  departement: this.departementData.departement,
-			  departementParent: this.departementData.departementParent,
-			  flagTraitement: this.departementData.flag_traitement,
-			  responsable: this.departementData.responsable,
-			  typeDepartement: this.departementData.typeDepartement,
+				departement_id: this.departementData.departement_id,
+				departement: this.departementData.departement,
+				departementParent: this.departementData.departementParent?.departement_id,
+				flagTraitement: this.departementData.flag_traitement,
+				responsable: this.departementData.responsable?.userId,
+				typeDepartement: this.departementData.typeDepartement?.typeDepartement_id,
 			})
 			this.action = "Modifier"
 		}
@@ -58,48 +57,51 @@ export class AddComponent {
 				console.log(data)
 				this.responsables = data;
 			}
-			)
-			this.departementService.getData().subscribe(
-				data => {
-		  console.log(data)
-		  this.departements = data;
-		}
+		)
+		this.departementService.getData().subscribe(
+			data => {
+				console.log(data)
+				this.departements = data;
+			}
 		)
 		this.typeDepartement.getData().subscribe(
 			data => {
 				console.log(data)
 				this.typeDepartements = data;
-      }
-    )
+			}
+		)
 	}
 	onAdd(formValue: any) {
 		console.log(formValue)
-		if (!formValue.nligne)
-		{
-			// const transformedData = this.transformFormData(formValue);
-			this.departementService.addDepartement(formValue).subscribe(
+		if (!formValue.departement_id) {
+			const transformedData = this.transformFormData(formValue);
+			this.departementService.addDepartement(transformedData).subscribe(
 				data => {
 					this.openSnackBar("Created Successfully", "cancel")
 				}
 			)
-		}else{
-			// const transformedData = this.transformFormData(formValue);
-			// this.departementService.updateHist(formValue).subscribe(
-			// 	data => {
-			// 		this.openSnackBar("Updated Successfully", "cancel")
-			// 	}
-			// )
+		} else {
+			const transformedData = this.transformFormData(formValue);
+			console.log(transformedData)
+			this.departementService.updateDepartement(transformedData).subscribe(
+				data => {
+					this.openSnackBar("Updated Successfully", "cancel")
+				}
+			)
 
 		}
 	}
 	openSnackBar(message: string, action: string) {
 		this._snackBar.open(message, action);
-	  }
-	// transformFormData(formData: any): any {
-	// 	return {
-	// 		caisseId: formData.caisseId,
-	// 	  	nomCaisse: formData.nomCaisse,
-	// 	  	descriptionCaisse: formData.descriptionCaisse,
-	// 	};
-	// }
+	}
+	transformFormData(formData: any): any {
+		return {
+			departement_id: formData.departement_id,
+			departement: formData.departement,
+			departementParent: { departementId: formData.departement_id },
+			flagTraitement: 0,
+			typeDepartement: { typeDepartement_id: formData.typeDepartement },
+			responsable: { userId: formData.responsable},
+		};
+	}
 }
