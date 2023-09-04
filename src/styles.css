@@ -1,5 +1,6 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200&display=swap');
 :root {
   --primary-bg-color: #007bff;      /* Dark blue, suitable for headings and primary elements */
   --secondary-bg-color: #17a2b8;    /* Teal, for buttons and highlights */
@@ -93,4 +94,8 @@
   }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: initial;
+}

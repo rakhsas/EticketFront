@@ -6,6 +6,8 @@ import { Workflow } from 'src/app/models/workflow';
 import { DynamicService } from '../../dynamic.service';
 import { DynamicSortableHeader, SortEvent } from '../../DynamicSortable.directive';
 import { WorkflowService } from 'src/app/services/workflow.service';
+import { Departement } from 'src/app/models/departement';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
 	selector: 'app-workflow-list',
@@ -32,9 +34,7 @@ export class WorkflowListComponent {
 	}
 	ngOnInit(): void {
 		this.getData();
-
-		// check is data being emitting
-		// this.users$.subscribe(users => console.log('Fetched users:', users));
+		// this.users$.subscribe(users => // console.log('Fetched users:', users));
 	}
 	onSort({ column, direction }: SortEvent) {
 		this.headers.forEach((header) => {
@@ -45,18 +45,18 @@ export class WorkflowListComponent {
 		this.service.sortColumn = column;
 		this.service.sortDirection = direction;
 	}
-	// openDialog(departement:Departement): void {
-	// 	let dialogRef = this.dialog.open(ModalComponent, {
-	// 		data: departement,
-	// 		width: '80%',
-	// 		height: '80%',
-	// 		autoFocus: false
-	// 	});
-	// 	dialogRef.afterClosed().subscribe(result => {
-	// 		this.profilesService.refreshData();
-	// 		this.getData();
-	// 	});
-	// }
+	openDialog(workflow:Workflow): void {
+		let dialogRef = this.dialog.open(ModalComponent, {
+			data: workflow,
+			width: '80%',
+			height: '80%',
+			autoFocus: false
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			this.service.refreshData();
+			this.getData();
+		});
+	}
 	getData() {
 		this.workflows$ = this.service.data$;
 		this.total$ = this.service.total$;

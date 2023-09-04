@@ -1,6 +1,6 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, QueryList, ViewChildren } from '@angular/core';
-import { Observable, map, of } from 'rxjs';
+import { ChangeDetectorRef, Component, QueryList, ViewChildren } from '@angular/core';
+import { Observable, filter, map, of } from 'rxjs';
 import { DynamicSortableHeader, SortEvent } from '../../DynamicSortable.directive';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
@@ -8,6 +8,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddComponent } from '../add/add.component';
 import { DynamicService } from '../../dynamic.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 @Component({
 	selector: 'users-list',
 	templateUrl: './UsersList.component.html',
@@ -23,20 +24,24 @@ export class UsersListComponent {
 	users$!: Observable<User[]>;
 	total$!: Observable<number>;
 	hasData$!: Observable<boolean>;
+	isCollapsed: boolean[] = [];
 
 	@ViewChildren(DynamicSortableHeader)
 	headers!: QueryList<DynamicSortableHeader>;
-
+	toggleCollapse(index: number) {
+		this.isCollapsed[index] = !this.isCollapsed[index];
+	}
 	constructor(
 		public service: DynamicService<User>,
 		public dialog: MatDialog,
+
 	) {
 	}
 	ngOnInit(): void {
 		this.getData();
 
 		// check is data being emitting
-		// this.users$.subscribe(users => console.log('Fetched users:', users));
+		// this.users$.subscribe(users => // console.log('Fetched users:', users));
 	}
 	onSort({ column, direction }: SortEvent) {
 		this.headers.forEach((header) => {
@@ -64,6 +69,8 @@ export class UsersListComponent {
 		this.total$ = this.service.total$;
 		this.hasData$ = this.users$.pipe(map(users => users.length > 0));
 		this.service.triggerSearch()
-		console.log(this.users$)
+		this.users$.subscribe(users => {
+			this.isCollapsed = Array(users.length).fill(false);
+		});
 	}
 }

@@ -5,7 +5,7 @@ import { DepartementList } from './DepartementList/Departement.component';
 
 const routes: Routes = [
   {
-    path: 'Departement',
+    path: '',
     redirectTo: 'list',
     pathMatch: 'full',
   },

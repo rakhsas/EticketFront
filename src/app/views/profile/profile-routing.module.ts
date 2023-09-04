@@ -5,7 +5,7 @@ import { AddComponent } from './add/add.component';
 
 const routes: Routes = [
   {
-    path: 'Profile',
+    path: '',
     redirectTo: 'list',
     pathMatch: 'full',
   },
@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'list',
     component: ProfileListeComponent,
     data: {
-      title: 'Profile List',
+      title: 'List des profiles',
     },
   },
   {

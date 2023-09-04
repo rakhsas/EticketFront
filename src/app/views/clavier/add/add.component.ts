@@ -29,7 +29,7 @@ export class AddComponent {
 	}
 	ngOnInit() {
 		if (this.clavierData) {
-			console.log(this.clavierData)
+			// console.log(this.clavierData)
 			this.clavierForm.patchValue({
 				idNum: this.clavierData.idNum,
 				libelle: this.clavierData.libelle,
@@ -39,7 +39,7 @@ export class AddComponent {
 	}
 	onAdd(formValue: any) {
 		if (!formValue.idNum) {
-      console.log(formValue)
+      // console.log(formValue)
 			this.clavierService.addClavier(formValue).subscribe(
 				data => {
 					this.openSnackBar("Created Successfully", "cancel")

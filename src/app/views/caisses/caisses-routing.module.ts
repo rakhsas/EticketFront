@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'list',
     component: CaisseListComponent,
     data: {
-      title: 'Profile List',
+      title: 'List des Caisses',
     },
   },
   {

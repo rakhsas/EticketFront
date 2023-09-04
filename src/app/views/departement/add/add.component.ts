@@ -34,14 +34,13 @@ export class AddComponent {
 			departement_id: null,
 			departement: '',
 			flagTraitement: 0,
-			departementParent: '',
+			departementParent: null,
 			typeDepartement: '',
 			responsable: '',
 		});
 	}
 	ngOnInit() {
 		if (this.departementData) {
-			console.log(this.departementData)
 			this.departementForm.patchValue({
 				departement_id: this.departementData.departement_id,
 				departement: this.departementData.departement,
@@ -54,25 +53,21 @@ export class AddComponent {
 		}
 		this.userService.getData().subscribe(
 			data => {
-				console.log(data)
 				this.responsables = data;
 			}
 		)
 		this.departementService.getData().subscribe(
 			data => {
-				console.log(data)
 				this.departements = data;
 			}
 		)
 		this.typeDepartement.getData().subscribe(
 			data => {
-				console.log(data)
 				this.typeDepartements = data;
 			}
 		)
 	}
 	onAdd(formValue: any) {
-		console.log(formValue)
 		if (!formValue.departement_id) {
 			const transformedData = this.transformFormData(formValue);
 			this.departementService.addDepartement(transformedData).subscribe(
@@ -82,7 +77,6 @@ export class AddComponent {
 			)
 		} else {
 			const transformedData = this.transformFormData(formValue);
-			console.log(transformedData)
 			this.departementService.updateDepartement(transformedData).subscribe(
 				data => {
 					this.openSnackBar("Updated Successfully", "cancel")
@@ -98,7 +92,7 @@ export class AddComponent {
 		return {
 			departement_id: formData.departement_id,
 			departement: formData.departement,
-			departementParent: { departementId: formData.departement_id },
+			departementParent: { departementId: formData.departementParent },
 			flagTraitement: 0,
 			typeDepartement: { typeDepartement_id: formData.typeDepartement },
 			responsable: { userId: formData.responsable},

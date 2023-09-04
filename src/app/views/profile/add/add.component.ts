@@ -37,7 +37,7 @@ export class AddComponent {
 	ngOnInit(){
 		if (this.profilData)
 		{
-			console.log(this.profilData)
+			// console.log(this.profilData)
 			this.profileForm.patchValue({
 				profilId: this.profilData.profilId,
 				description: this.profilData.description,
@@ -69,7 +69,7 @@ export class AddComponent {
 				)
 			}else{
 				const transformedData = this.transformFormData(formValue);
-				console.log(transformedData)
+				// console.log(transformedData)
 			this.profileService.updateProfile(transformedData).subscribe(
 				data => {
 					this.openSnackBar("Updated Successfully", "cancel")

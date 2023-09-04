@@ -32,7 +32,7 @@ export class AddComponent {
 	}
 	ngOnInit() {
 		if (this.artData) {
-			console.log(this.artData)
+			// console.log(this.artData)
 			this.artForm.patchValue({
 				idart: this.artData.idart,
 				cpt: this.artData.cpt,

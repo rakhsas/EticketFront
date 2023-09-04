@@ -33,7 +33,7 @@
 				<label class="control-label">Co_NO
 					<span class="star" style="color: red;">*</span>
 				</label>
-				<input class="form-control" name="cO_NO" type="text" formControlName="cO_NO" id="Co_NO" required="true"/>
+				<input class="form-control" name="co_NO" type="text" formControlName="co_NO" id="Co_NO" required="true"/>
 			</div>
 			<div class="form-group col-md-4" style="padding: 5px 0 5px 0;">
 				  <mat-form-field class="max">
@@ -76,7 +76,7 @@
 		</div>
 		<div class="row">
 			<div class="form-group col-md-6">
-				<mat-form-field>
+				<mat-form-field  class="max">
 					<mat-label>Actif</mat-label>
 					<mat-select formControlName="actif">
 						<mat-option [value]="true">Oui</mat-option>
@@ -85,7 +85,7 @@
 				</mat-form-field>
 			</div>
 			<div class="form-group col-md-6">
-				<mat-form-field>
+				<mat-form-field  class="max">
 					<mat-label>Departements</mat-label>
 					<mat-select formControlName="departement">
 						<mat-option *ngFor="let departement of departements" [value]="departement.departement_id">{{departement.departement}}</mat-option>
@@ -97,17 +97,8 @@
 			<span class="star" style="color: red;">*</span> Required fields
 		</div>
 		<div class="text-center">
-			<button
-			  *ngIf="action === 'Modifier'"
-			  type="submit"
-			  class="btn btn-primary"
-			  [mat-dialog-close]="true"
-			  cdkFocusInitial
-			>
-			  {{ action }}
-			</button>
-			<button *ngIf="action === 'Ajouter'" type="submit" class="btn btn-primary">
-			  {{ action }}
+			<button type="submit" class="btn btn-outline-danger btn-fw">
+			  {{ action === 'Ajouter' ? 'Ajouter' : 'Modifier' }}
 			</button>
 		  </div>
 

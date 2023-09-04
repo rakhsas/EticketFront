@@ -44,7 +44,7 @@ export class AddComponent{
 	ngOnInit(){
 		if (this.caisseData)
 		{
-			console.log(this.caisseData)
+			// console.log(this.caisseData)
 			this.caisseForm.patchValue({
 				caisseId: this.caisseData.caisseId,
 				nomCaisse: this.caisseData.nomCaisse,
@@ -59,7 +59,7 @@ export class AddComponent{
 		)
 	}
 	onAdd(formValue: any) {
-		console.log(formValue)
+		// console.log(formValue)
 		if (!formValue.caisseId)
 		{
 			const transformedData = this.transformFormData(formValue);
@@ -79,8 +79,10 @@ export class AddComponent{
 		}
 	}
 	openSnackBar(message: string, action: string) {
-		this._snackBar.open(message, action);
-	  }
+  this._snackBar.open(message, action, {
+    duration: 3000, // Set the duration as needed
+  });
+}
 	transformFormData(formData: any): any {
 		return {
 			caisseId: formData.caisseId,

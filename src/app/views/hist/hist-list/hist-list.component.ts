@@ -32,7 +32,7 @@ export class HistListComponent {
     }
     ngOnInit(): void{
       this.getData();
-      console.log(this.hists$)
+      // console.log(this.hists$)
     }
     onSort({ column, direction }: SortEvent) {
       this.headers.forEach((header) => {

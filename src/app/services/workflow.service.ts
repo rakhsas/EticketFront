@@ -12,10 +12,10 @@ export class WorkflowService {
     this.URL = environment.apiURL;
   }
   getWorkflows():Observable<any>{
-    return this.http.get(this.URL + 'workflow/getworkflow');
+    return this.http.get(this.URL + 'workflow');
   }
   getData():Observable<any>{
-    return this.http.get(this.URL + 'workflow/getworkflow');
+    return this.http.get(this.URL + 'workflow');
   }
   getWorkflow(id: Number): Observable<any>{
     return this.http.get(this.URL + 'workflow/' + id);

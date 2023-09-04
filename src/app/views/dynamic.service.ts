@@ -168,9 +168,9 @@ export class DynamicService<T> {
 		propertyType = 'Date';
 		}
 		// 1. sort
-		// console.log(this.DATA)
+		// // console.log(this.DATA)
 		let data = sort(this.DATA, sortColumn, sortDirection, propertyType);
-		// console.log(data.length)
+		// // console.log(data.length)
 		// 2. filter
 		data = data.filter((item) => matches(item, searchTerm, ['property1', 'property2'])); // Replace with actual property names
 

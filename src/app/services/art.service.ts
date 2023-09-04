@@ -26,6 +26,6 @@ export class artService{
 		return this.http.post(this.URL + 'arts', form);
 	}
 	updateArt(form: Art): Observable<any> {
-		return this.http.put(this.URL + 'arts/arts/' + form.idart, form);
+		return this.http.put(this.URL + 'arts/' + form.idart, form);
 	}
 }

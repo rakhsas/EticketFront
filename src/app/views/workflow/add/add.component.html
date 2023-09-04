@@ -10,7 +10,7 @@
 			<div class="col" style="padding: 5px 0 5px 2%;">
 				  <mat-form-field class="max">
 					<mat-label>Worflows</mat-label>
-					<mat-select multiple formControlName="parent">
+					<mat-select formControlName="parent">
 					  <mat-option *ngFor="let workflow of workflows" [value]="workflow.workFlowId">{{workflow.nom}}</mat-option>
 					</mat-select>
 				</mat-form-field>
@@ -20,17 +20,8 @@
 			<span class="star" style="color: red;">*</span> Required fields
 		</div>
 		<div class="text-center">
-			<button
-			  *ngIf="action === 'Modifier'"
-			  type="submit"
-			  class="btn btn-primary"
-			  [mat-dialog-close]="true"
-			  cdkFocusInitial
-			>
-			  {{ action }}
-			</button>
-			<button *ngIf="action === 'Ajouter'" type="submit" class="btn btn-primary" disabled>
-			  {{ action }}
+			<button type="submit" class="btn btn-outline-danger btn-fw">
+			  {{ action === 'Ajouter' ? 'Ajouter' : 'Modifier' }}
 			</button>
 		  </div>
 

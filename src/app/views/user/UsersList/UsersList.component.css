@@ -1,0 +1,104 @@
+body {
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: initial;
+}
+
+.d-flex {
+	display: flex !important;
+}
+
+.cell-hilighted h6 {
+	padding: 5px 0;
+	font-size: 14px;
+    color: #52C4FF;
+}
+.cell-hilighted h5 {
+    font-size: 20px;
+    color: #52C4FF;
+}
+
+.cell-hilighted p {
+    opacity: .6;
+    margin-bottom: 0;
+}
+
+.cell-hilighted {
+	background-color: #4B49AC;
+	border-radius: 10px;
+	padding: 18px;
+	color: #fff;
+    justify-content: space-between !important;
+	font-size: 11px;text-shadow: none;
+}
+
+
+.expandable-table .expanded-row {
+    background: #fafafa;
+}
+
+thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+	border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+	box-sizing: border-box;
+}
+
+.expandable-table tr td .expanded-table-normal-cell p {
+    font-size: 11px;
+    margin-bottom: 0;
+	line-height: 1.3rem;
+	text-shadow: none;
+}
+
+.expandable-table tr td {
+	padding: 14px;
+	font-size: 14px;
+}
+.expanded-table-normal-cell{
+	width: auto;
+}
+.expandable-table tr td .expanded-table-normal-cell {
+    padding: 10px;
+}
+
+.mb-4 {
+	margin-bottom: 1.5rem !important;
+}
+table {
+	caption-side: bottom;
+    border-collapse: collapse;
+	text-indent: initial;
+    border-spacing: 2px;
+}
+a, div, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, p, span {
+    text-shadow: none;
+}
+
+p {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	font-size: 0.875rem;
+	line-height: 1.3rem;
+	margin-inline-end: 0px;
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 500;
+    line-height: 1;
+}
+
+table {
+	border-color: grey;
+}

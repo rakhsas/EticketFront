@@ -6,7 +6,7 @@ import { AddComponent } from './add/add.component';
 
 const routes: Routes = [
   {
-    path: 'user',
+    path: '',
     redirectTo: 'list',
     pathMatch: 'full',
   },
@@ -24,8 +24,11 @@ const routes: Routes = [
       title: 'Add User',
     },
   },
-  // Add more routes as needed
+  // Add more child routes as needed
 ];
+
+
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

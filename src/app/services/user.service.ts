@@ -13,10 +13,6 @@ export class UserService {
   constructor(private http: HttpClient,
   ) {
 	this.URL = environment.apiURL;
-
-  }
-  ngOnInit() {
-
   }
   // login(form:User):Observable<any>{
   //   return this.http.post(this.URL + 'api/auth/login', form);

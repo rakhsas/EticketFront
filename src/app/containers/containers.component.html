@@ -1,11 +1,20 @@
 <div [ngClass]="status ? 'toggled' : ''" class="d-flex" id="wrapper">
-    <app-sidebar></app-sidebar>
-  <!-- Page Content -->
-  <div id="page-content-wrapper">
-        <app-navbar [status]="status" (toggleStatus)="addToggle()"></app-navbar>
-      <div class="custom-container">
-          <router-outlet></router-outlet>
-      </div>
-  </div>
+	<app-sidebar></app-sidebar>
+	<!-- Page Content -->
+	<div id="page-content-wrapper">
+		<app-navbar [status]="status" (toggleStatus)="addToggle()"></app-navbar>
+		<div class="custom-container">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a [routerLink]="currentPath.split('/')[1]">
+						{{ currentPath.split("/")[1] }}</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">
+					{{ currentPath.split("/")[2] }}
+				</li>
+			</ol>
+			<router-outlet></router-outlet>
+		</div>
+	</div>
 </div>
 <!-- /#page-content-wrapper -->

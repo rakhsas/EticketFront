@@ -1,6 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Caisse } from 'src/app/models/caisse';
 import { Departement } from 'src/app/models/departement';
@@ -34,6 +34,7 @@ export class AddComponent{
 		public dialog: MatDialog,
 		public _snackBar: MatSnackBar,
 		private formBuilder: FormBuilder,
+		private dialogRef: MatDialogRef<AddComponent>,
 	) {
 		this.userForm = this.formBuilder.group({
 			userId: null,
@@ -41,7 +42,7 @@ export class AddComponent{
 			actif: false,
 			login: '',
 			motPasse: '',
-			cO_NO: '',
+			co_NO: '',
 			nomUser: '',
 			toutDocument: false,
 			updatePassword : false,
@@ -53,14 +54,14 @@ export class AddComponent{
 	ngOnInit(){
 		if (this.userData)
 		{
-			console.log(this.userData)
+			// console.log(this.userData)
 			this.userForm.patchValue({
 				userId: this.userData.userId,
 				prenomUser: this.userData.prenomUser,
 				nomUser: this.userData.nomUser,
 				login: this.userData.login,
 				motPasse: this.userData.motPasse,
-				cO_NO: this.userData.co_NO,
+				co_NO: this.userData.co_NO,
 				toutDocument: this.userData.toutDocument,
 				updatePassword: this.userData.updatePassword,
 				assignedCaisses: this.userData.assignedCaisses.map((caisse: any) => caisse.caisseId),
@@ -106,14 +107,16 @@ export class AddComponent{
 			this.userService.updateUser(transformedData).subscribe(
 				data => {
 					this.openSnackBar("Updated Successfully", "cancel")
+					this.dialogRef.close();
 				}
 			)
-
 		}
 	}
 	openSnackBar(message: string, action: string) {
-		this._snackBar.open(message, action);
-	  }
+	this._snackBar.open(message, action, {
+		duration: 3000, // Set the duration as needed
+	});
+}
 	transformFormData(formData: any): any {
 		return {
 			userId: formData.userId,
@@ -121,7 +124,7 @@ export class AddComponent{
 		  nomUser: formData.nomUser,
 		  login: formData.login,
 		  motPasse: formData.motPasse,
-		  cO_NO: formData.cO_NO,
+		  co_NO: formData.co_NO,
 		  toutDocument: formData.toutDocument,
 		  updatePassword: formData.updatePassword,
 		  profil: { profilId: formData.profil },

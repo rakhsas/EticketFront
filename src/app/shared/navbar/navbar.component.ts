@@ -16,6 +16,7 @@ import { filter } from 'rxjs';
 })
 export class NavbarComponent {
 	pageTitle: string = '';
+	currentPath: string = '';
 	@Input() status?: boolean;
 	@Output() toggleStatus: EventEmitter<void> = new EventEmitter<void>();
 	constructor(
@@ -25,18 +26,29 @@ export class NavbarComponent {
 	) {
 		this.router.events.pipe(
 			filter(event => event instanceof NavigationEnd)
-		  ).subscribe(() => {
+		).subscribe(() => {
 			this.pageTitle = this.getPageTitle(this.activatedRoute.root);
+			this.currentPath = this.getCurrentPath(this.activatedRoute.root);
+			// console.log(this.currentPath)
 			this.cdr.detectChanges();
-		  });
+		});
 	}
 	ngOnInit(): void {
 
 	}
 	private getPageTitle(route: ActivatedRoute): string {
-		while (route.firstChild) {
-			route = route.firstChild;
+		let currentRoute = route;
+		while (currentRoute.firstChild) {
+		  currentRoute = currentRoute.firstChild;
 		}
-		return route.snapshot.data['title'] || 'Dashboard'; // Use 'Dashboard' as default
+		return currentRoute.snapshot.data['title'] || 'Dashboard';
 	}
+	private getCurrentPath(route: ActivatedRoute): string {
+		const segments: string[] = [];
+		while (route) {
+		  segments.push(...route.snapshot.url.map(segment => segment.path));
+		  route = route.firstChild;
+		}
+		return `/${segments.join('/')}`;
+	  }
 }

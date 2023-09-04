@@ -5,7 +5,7 @@ import { AddComponent } from './add/add.component';
 
 const routes: Routes = [
   {
-    path: 'Art',
+    path: '',
     redirectTo: 'list',
     pathMatch: 'full',
   },
@@ -13,14 +13,14 @@ const routes: Routes = [
     path: 'list',
     component: ArtListComponent,
     data: {
-      title: 'Profile List',
+      title: 'iste des Arts',
     },
   },
   {
     path: 'add',
     component: AddComponent,
     data: {
-      title: 'Profile List',
+      title: 'Creer un Art',
     },
   },
 ];

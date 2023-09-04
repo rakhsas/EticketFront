@@ -5,7 +5,7 @@ import { AddComponent } from './add/add.component';
 
 const routes: Routes = [
   {
-    path: 'Workflow',
+    path: '',
     redirectTo: 'list',
     pathMatch: 'full',
   },

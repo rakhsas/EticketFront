@@ -35,7 +35,7 @@ export class ArtListComponent {
 		this.getData();
 
 		// check is data being emitting
-		// this.users$.subscribe(users => console.log('Fetched users:', users));
+		// this.users$.subscribe(users => // console.log('Fetched users:', users));
 	}
 	onSort({ column, direction }: SortEvent) {
 		this.headers.forEach((header) => {

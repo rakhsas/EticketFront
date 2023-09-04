@@ -1,59 +1,133 @@
-<form style="width: 100%;">
+<form style="width: 100%">
 	<div class="mb-3 row">
 		<label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
 		<div class="col-xs-3 col-sm-auto">
-			<input
-				id="table-complete-search"
-				type="text"
-				class="form-control"
-				name="searchTerm"
-				[(ngModel)]="service.searchTerm"
-			/>
+			<input id="table-complete-search" type="text" class="form-control" name="searchTerm"
+				[(ngModel)]="service.searchTerm" />
 		</div>
 		<span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
-		<!-- <div class="spinner-border" role="status" *ngIf="service.loading$ | async">
+		<div class="spinner-border" role="status" *ngIf="service.loading$ | async">
 			<span class="visually-hidden">Loading...</span>
-		</div> -->
+		</div>
 	</div>
-	<div class="table-responsive"><table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col" sortable="prenomUser" (sort)="onSort($event)">Prenom</th>
-				<th scope="col" sortable="nomUser" (sort)="onSort($event)">Nom</th>
-				<th scope="col" sortable="login" (sort)="onSort($event)">Login</th>
-				<th scope="col" sortable="profil" (sort)="onSort($event)">Profile</th>
-				<th scope="col">Actif</th>
-				<th scope="col">Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let user of users$ | async">
-				<th scope="row">{{ user.userId }}</th>
-				<td>
-					<ngb-highlight [result]="user.prenomUser" [term]="service.searchTerm"></ngb-highlight>
-				</td>
-				<td><ngb-highlight [result]="user.nomUser" [term]="service.searchTerm"></ngb-highlight></td>
-				<td><ngb-highlight [result]="user.login" [term]="service.searchTerm"></ngb-highlight></td>
-				<td><span *ngIf="user.profil"><ngb-highlight [result]="user.profil.nomProfil" [term]="service.searchTerm"></ngb-highlight></span></td>
-				<td>
-					<i class="fas fa-circle me-2" *ngIf="user.actif" style="color: green;"></i>
-					<i class="fas fa-circle me-2" *ngIf="!user.actif" style="color: red;"></i>
-				</td>
-				<td>
-					<button type="button" rel="tooltip" class="btn btn-success" (click)="openDialog(user)">
-						<i class="material-icons">edit</i>
-					</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-
+	<div class="table-responsive">
+		<table class="table table-striped" role="grid">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col" sortable="prenomUser" (sort)="onSort($event)">
+						Prenom
+					</th>
+					<th scope="col" sortable="nomUser" (sort)="onSort($event)">Nom</th>
+					<th scope="col" sortable="login" (sort)="onSort($event)">Login</th>
+					<th scope="col" sortable="profil" (sort)="onSort($event)">Profile</th>
+					<th scope="col">Actif</th>
+					<th scope="col">Actions</th>
+					<th scope="col">Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<ng-container *ngFor="let user of users$ | async; let i = index">
+					<tr>
+						<td>{{ user.userId }}</td>
+						<td>{{ user.prenomUser }}</td>
+						<td>{{ user.nomUser }}</td>
+						<td>{{ user.login }}</td>
+						<td>
+							<span *ngIf="user.profil">{{ user.profil.nomProfil }}</span>
+						</td>
+						<td>
+							<i class="fas fa-circle me-2" *ngIf="user.actif" style="color: green"></i>
+							<i class="fas fa-circle me-2" *ngIf="!user.actif" style="color: red"></i>
+						</td>
+						<td>
+							<a class="btn" (click)="openDialog(user)">
+								<i class="material-icons">edit</i>
+							</a>
+						</td>
+						<td>
+							<button type="button" class="btn btn-link" data-bs-toggle="collapse" (click)="toggleCollapse(i)"
+							[attr.data-bs-target]="'#collapse-detail' + i">
+								<i class="bi bi-caret-down-fill" aria-hidden="true" *ngIf="!isCollapsed[i]"></i>
+								<i class="bi bi-caret-up-fill" aria-hidden="true" *ngIf="isCollapsed[i]"></i>
+							</button>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="8">
+							<div class="table-responsive">
+								<table cellpadding="5" cellspacing="0" border="0" style="width:100%;">
+									<tbody>
+										<tr class="expanded-row">
+											<td colspan="8" class="row-bg">
+												<div [id]="'collapse-detail' + i" class="collapse">
+													<div class="container">
+														<div class="row" style="padding: 14px; background-color: #FAFAFA;">
+															<div class="col"  style="width: auto;">
+																<div class="cell-hilighted">
+																	<div class="d-flex mb-2" style="display: flex !important;">
+																		<div class="me-2 min-width-cell">
+																			<p>Nom</p>
+																			<h6>{{ user.nomUser | uppercase }}</h6>
+																		</div>
+																		<div class="min-width-cell">
+																			<p>Prenom</p>
+																			<h6>{{ user.prenomUser | uppercase }}</h6>
+																		</div>
+																	</div>
+																	<div class="d-flex mb-2">
+																		<div class="me-2 min-width-cell">
+																			<p>Login</p>
+																			<h6>{{ user.login | uppercase }}</h6>
+																		</div>
+																		<div class="min-width-cell">
+																			<p>Profile</p>
+																			<h6>{{ user.profil.nomProfil | uppercase }}
+																			</h6>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col">
+																<div class="expanded-table-normal-cell">
+																	<div class="me-2 mb-4">
+																		<p>Caisses</p>
+																		<h6 *ngFor="let caisse of user.assignedCaisses">{{ caisse.nomCaisse }}</h6>
+																	</div>
+																</div>
+															</div>
+															<div class="col" style="width: auto;">
+																<div class="expanded-table-normal-cell">
+																	<div class="me-2 mb-4">
+																		<p>Departement</p>
+																		<h6>{{user.departement?.departement}}</h6>
+																	</div>
+																</div>
+																<div class="expanded-table-normal-cell">
+																	<div class="me-2 mb-4">
+																		<p>CoNO</p>
+																		<h6>{{ user.co_NO }}</h6>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- End of Row -->
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</td>
+					</tr>
+				</ng-container>
+			</tbody>
+		</table>
+	</div>
 	<div class="d-flex justify-content-between p-2">
 		<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
 		</ngb-pagination>
-
 		<select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
 			<option [ngValue]="2">2 items per page</option>
 			<option [ngValue]="4">4 items per page</option>

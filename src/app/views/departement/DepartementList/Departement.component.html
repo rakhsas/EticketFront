@@ -32,11 +32,11 @@
 				<td><ngb-highlight [result]="departement.departement" [term]="service.searchTerm"></ngb-highlight></td>
 				<td><ngb-highlight [result]="departement.typeDepartement.libelle" [term]="service.searchTerm"></ngb-highlight></td>
 				<td>{{ departement.departementParent ? departement.departementParent.departement : ''}}</td>
-				<td><ngb-highlight [result]="departement.responsable.nomUser" [term]="service.searchTerm"></ngb-highlight></td>
+				<td><ngb-highlight [result]="departement.responsable?.nomUser" [term]="service.searchTerm"></ngb-highlight></td>
 				<td>
-				<button type="button" rel="tooltip" class="btn btn-success" (click)="openDialog(departement)">
-					<i class="material-icons">edit</i>
-				</button>
+				<a class="btn" (click)="openDialog(departement)">
+								<i class="material-icons">edit</i>
+							</a>
 				</td>
 			</tr>
 		</tbody>

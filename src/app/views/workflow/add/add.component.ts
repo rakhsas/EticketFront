@@ -26,17 +26,17 @@ export class AddComponent {
 		this.workflowForm = this.formBuilder.group({
 			workFlowId: null,
 			nom: '',
-			parent: ''
+			parent: null
 		  });
 	}
 	ngOnInit(){
 		if (this.workflowData)
 		{
-			console.log(this.workflowData)
+			// console.log(this.workflowData)
 			this.workflowForm.patchValue({
 				workFlowId: this.workflowData.workFlowId,
 				nom: this.workflowData.nom,
-				parent: this.workflowData.parent,
+				parent: this.workflowData.parent?.workFlowId,
 			})
 			this.action = "Modifier"
 		}
@@ -47,10 +47,10 @@ export class AddComponent {
 		)
 	}
 	onAdd(formValue: any) {
-		console.log(formValue)
 		if (!formValue.workFlowId)
 		{
 			const transformedData = this.transformFormData(formValue);
+			// console.log(transformedData)
 			this.workflowService.addWorkflow(transformedData).subscribe(
 				data => {
 					this.openSnackBar("Created Successfully", "cancel")
@@ -67,13 +67,15 @@ export class AddComponent {
 		// }
 	}
 	openSnackBar(message: string, action: string) {
-		this._snackBar.open(message, action);
-	  }
+  this._snackBar.open(message, action, {
+    duration: 3000, // Set the duration as needed
+  });
+}
 	transformFormData(formData: any): any {
 		return {
 			workFlowId: formData.workFlowId,
 		  	nom: formData.nom,
-		  	parent: formData.parent,
+		  	parent: { workFlowId: formData.parent },
 		};
 	}
 }

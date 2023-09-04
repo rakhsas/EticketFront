@@ -44,7 +44,7 @@ export class AddComponent {
 	ngOnInit(){
 		if (this.histData)
 		{
-			console.log(this.histData)
+			// console.log(this.histData)
 			this.histForm.patchValue({
 				nligne: this.histData.nligne,
 				nomClient: this.histData.nomClient,
@@ -69,7 +69,7 @@ export class AddComponent {
 		)
 	}
 	onAdd(formValue: any) {
-		console.log(formValue)
+		// console.log(formValue)
 		if (!formValue.nligne)
 		{
 			// const transformedData = this.transformFormData(formValue);
@@ -89,8 +89,10 @@ export class AddComponent {
 		}
 	}
 	openSnackBar(message: string, action: string) {
-		this._snackBar.open(message, action);
-	  }
+  this._snackBar.open(message, action, {
+    duration: 3000, // Set the duration as needed
+  });
+}
 	// transformFormData(formData: any): any {
 	// 	return {
 	// 		caisseId: formData.caisseId,

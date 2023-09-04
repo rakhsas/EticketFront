@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContainersComponent } from './containers/containers.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { UserModule } from './views/user/user.module';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'user',
     pathMatch: 'full',
   },
   {
@@ -52,7 +53,9 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
