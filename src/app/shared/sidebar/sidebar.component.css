@@ -50,7 +50,7 @@ main {
 }
 .btn-toggle:hover,
 .btn-toggle:focus {
-  color: rgba(0, 0, 0, .85);
+  color: #fff;
   background-color: #2727ec;
 }
 
@@ -110,7 +110,14 @@ main {
 }
 
 /* Selected state */
-.list-group-item.active {
+/* .list-group-item.active {
   background-color: #4B49AC;
-  /* color: var(--selected-text-color); */
+} */
+
+a {
+  color: #6C7383;
+}
+
+.list-group-item:not(.collapsed) {
+  border-radius: 8px;
 }

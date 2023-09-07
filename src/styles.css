@@ -1,12 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200&display=swap');
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200&display=swap');
 :root {
   --primary-bg-color: #007bff;      /* Dark blue, suitable for headings and primary elements */
   --secondary-bg-color: #17a2b8;    /* Teal, for buttons and highlights */
   --background-color: #f8f9fa;      /* Light gray, for background */
   --text-color: #343a40;            /* Dark gray, for text */
   --success-color: #28a745;         /* Green, for success or positive feedback */
+}
+.dark-theme {
+  --primary-bg-color: #121212; /* Dark background color */
+  --secondary-bg-color: #1E1E1E; /* Darker background color */
+  --background-color: #000; /* Darkest background color */
+  --text-color: #ffffff; /* White text color for dark mode */
+  --success-color: #28a745; /* Green for success or positive feedback */
 }
 
   .primary-text {
@@ -92,10 +99,9 @@
       margin-left: -15rem;
     }
   }
-
-html, body { height: 100%; }
 body {
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: initial;
+  height: 100%;
 }

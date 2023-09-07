@@ -1,3 +1,4 @@
+import { Renderer2, ElementRef } from '@angular/core';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -13,6 +14,7 @@ export class ContainersComponent {
 	currentPath: string = '';
 	pageTitle: string = '';
 	status: boolean = false;
+	isDarkMode: boolean = false;
 
 	constructor(
 		private router: Router,
@@ -43,5 +45,5 @@ export class ContainersComponent {
 		  route = route.firstChild;
 		}
 		return `/${segments.join('/')}`;
-	  }
+	}
 }

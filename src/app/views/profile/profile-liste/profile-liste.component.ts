@@ -60,5 +60,8 @@ export class ProfileListeComponent {
 		this.total$ = this.service.total$;
 		this.hasData$ = this.profiles$.pipe(map(profiles => profiles.length > 0));
 		this.service.triggerSearch();
+		this.profiles$.subscribe(
+			t=> console.log(t)
+		)
 	}
 }

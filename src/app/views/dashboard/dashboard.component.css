@@ -1,0 +1,320 @@
+/* @media (max-width: 991px) .main-panel {
+    margin-left: 0;
+    width: 100%;
+} */
+
+/* @media (min-width: 768px)
+.col-md-12 {
+    flex: 0 0 auto;
+    width: 100%;
+} */
+
+/*
+.main-panel {
+    transition: width 0.25s ease, margin 0.25s ease;
+    width: auto;
+    min-height: calc(100vh - 60px);
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    background: #F5F7FF;
+    padding: 2.375rem 2.375rem;
+    width: 100%;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+
+.row {
+    --bs-gutter-x: 30px;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+}
+
+.grid-margin {
+    margin-bottom: 2.5rem;
+}
+
+.row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.col-md-6.grid-margin.stretch-card {
+    flex: 0 0 50%;
+}
+
+.col-md-6.grid-margin {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 50%;
+    margin-left: 10px;
+}
+
+.col-md-6.mb-4.stretch-card {
+    margin-bottom: 10px;
+    flex: 0 0 100%;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+h3,
+.h3,
+.h3 {
+    font-size: 1.525rem;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-weight: 500;
+    line-height: 1;
+}
+
+a,
+div,
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+p,
+span {
+    text-shadow: none;
+}
+
+h3,
+.h3 {
+    font-size: calc(1.3rem + 0.6vw);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.text-primary,
+.list-wrapper .completed .remove {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+}
+
+.stretch-card {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-justify-content: stretch;
+    justify-content: stretch;
+}
+
+.grid-margin {
+    margin-bottom: 2.5rem;
+}
+
+.card.tale-bg {
+    background: #DAE7FF;
+}
+
+.stretch-card>.card {
+    width: 100%;
+    min-width: 100%;
+}
+
+
+.card {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    transition: background 0.25s ease;
+    -webkit-transition: background 0.25s ease;
+    -moz-transition: background 0.25s ease;
+    -ms-transition: background 0.25s ease;
+    border: none;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e3e3;
+    border-radius: 20px;
+}
+
+.card-people {
+    position: relative;
+    padding-top: 20px;
+}
+
+.mt-auto {
+    margin-top: auto !important;
+}
+
+.card-people img {
+    border-radius: 20px;
+    width: 100%;
+}
+
+img,
+svg {
+    vertical-align: middle;
+}
+
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.card-people .weather-info {
+    position: absolute;
+    top: 30px;
+    right: 24px;
+}
+
+
+
+
+.smaller-card {
+    width: 49%;
+}
+
+*/
+
+.card {
+    border-radius: 20px;
+}
+
+.card.card-tale {
+    background: #7DA0FA;
+    color: #ffffff;
+}
+
+.card.card-dark-blue {
+    background: #4747A1;
+    color: #ffffff;
+}
+
+.card.card-light-danger {
+    background: #F3797E;
+    color: #ffffff;
+}
+
+.card.card-light-blue {
+    background: #7978E9;
+    color: #ffffff;
+}
+
+.card-people .location {
+    font-size: 20px;
+}
+
+.card-people sup {
+    font-size: 18px;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sup {
+    left: 2px;
+    position: relative;
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.card .card-body {
+    padding: 1.25rem 1.25rem;
+}
+.card-body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+}
+
+p {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3rem;
+}
+.fs-30 {
+    font-size: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0.6;
+}

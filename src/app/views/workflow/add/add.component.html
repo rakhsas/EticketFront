@@ -1,13 +1,13 @@
 <form [formGroup]="workflowForm" (ngSubmit)="onAdd(workflowForm.value)">
 	<div class="container">
 		<div class="row">
-			<div class="col">
+			<div class="col-md-6">
 				<label class="control-label">workflow nom
 					<span class="star" style="color: red;">*</span>
 				</label>
 				<input class="form-control" name="Workflow" id="Workflow" type="text" formControlName="nom" required="true"/>
 			</div>
-			<div class="col" style="padding: 5px 0 5px 2%;">
+			<div class="col-md-6" style="padding: 5px 0 5px 2%;">
 				  <mat-form-field class="max">
 					<mat-label>Worflows</mat-label>
 					<mat-select formControlName="parent">

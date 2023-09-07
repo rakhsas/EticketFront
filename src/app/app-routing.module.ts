@@ -7,13 +7,18 @@ import { UserModule } from './views/user/user.module';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'user',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
     path: '',
     component: ContainersComponent,
     children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      }
+      ,
       {
         path: 'user',
         loadChildren: () => import('./views/user/user.module').then(m => m.UserModule),

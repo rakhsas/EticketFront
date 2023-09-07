@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 
 export const ROUTES = [
   {
+    path: 'dashboard',
+    title: 'Dashboard',
+    icon: 'bi bi-grid',
+
+  },
+  {
     path: 'user',
     title: 'Utilisateurs',
     icon: 'bi bi-people',
