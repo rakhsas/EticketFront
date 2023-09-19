@@ -34,7 +34,7 @@ export class AddComponent{
 		public dialog: MatDialog,
 		public _snackBar: MatSnackBar,
 		private formBuilder: FormBuilder,
-		private dialogRef: MatDialogRef<AddComponent>,
+		// private dialogRef: MatDialogRef<AddComponent>,
 	) {
 		this.userForm = this.formBuilder.group({
 			userId: null,
@@ -97,6 +97,7 @@ export class AddComponent{
 		if (!formValue.userId)
 		{
 			const transformedData = this.transformFormData(formValue);
+			console.log(transformedData)
 			this.userService.addUser(transformedData).subscribe(
 				data => {
 					this.openSnackBar("Created Successfully", "cancel")
@@ -107,7 +108,7 @@ export class AddComponent{
 			this.userService.updateUser(transformedData).subscribe(
 				data => {
 					this.openSnackBar("Updated Successfully", "cancel")
-					this.dialogRef.close();
+					// this.dialogRef.close();
 				}
 			)
 		}
@@ -128,7 +129,7 @@ export class AddComponent{
 		  toutDocument: formData.toutDocument,
 		  updatePassword: formData.updatePassword,
 		  profil: { profilId: formData.profil },
-		  departement: { departement_id: formData.departement },
+		  departement: formData.departement? { departement_id: formData.departement } : null,
 		  assignedCaisses: formData.assignedCaisses.map((caisseId: number) => ({ caisseId, isActive: true })),
 		  actif: formData.actif
 		};

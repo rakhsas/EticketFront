@@ -29,12 +29,12 @@
 			<tbody>
 				<ng-container *ngFor="let user of users$ | async; let i = index">
 					<tr>
-						<td>{{ user.userId }}</td>
-						<td>{{ user.prenomUser }}</td>
-						<td>{{ user.nomUser }}</td>
-						<td>{{ user.login }}</td>
+						<td><ngb-highlight [result]="user.userId | number" [term]="service.searchTerm"></ngb-highlight></td>
+						<td><ngb-highlight [result]="user.prenomUser" [term]="service.searchTerm"></ngb-highlight></td>
+						<td><ngb-highlight [result]="user.nomUser" [term]="service.searchTerm"></ngb-highlight></td>
+						<td><ngb-highlight [result]="user.login" [term]="service.searchTerm"></ngb-highlight></td>
 						<td>
-							<span *ngIf="user.profil">{{ user.profil.nomProfil }}</span>
+							<span *ngIf="user.profil"><ngb-highlight [result]="user.profil.nomProfil" [term]="service.searchTerm"></ngb-highlight></span>
 						</td>
 						<td>
 							<i class="fas fa-circle me-2" *ngIf="user.actif" style="color: green"></i>

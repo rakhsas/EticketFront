@@ -1,0 +1,93 @@
+<mat-stepper linear animationDuration="400">
+	<mat-step>
+		<ng-template matStepLabel>Demande choix d'Article et Client</ng-template>
+		<div class="container">
+			<form [formGroup]="venteForm" (ngSubmit)="onAdd(venteForm.value)">
+				<!-- <div class="card-content"> -->
+					<div class="row justify-content-md-between">
+						<div class="form-group col-md-4">
+							<mat-form-field class="max">
+								<mat-label>Client</mat-label>
+								<mat-select formControlName="client">
+									<mat-option *ngFor="let client of clients" [value]="client.clientId">
+										{{ client.contactClient }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div class="form-group col-md-4">
+							<mat-form-field class="max">
+								<mat-label>Artcle</mat-label>
+								<mat-select formControlName="article">
+									<mat-option *ngFor="let article of articles" [value]="article.idArticle">
+										{{ article.designation }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+						<div class="form-group col-md-4">
+							<mat-form-field class="max">
+								<mat-label>categorie Article</mat-label>
+								<mat-select formControlName="categorie">
+									<mat-option *ngFor="let categorie of categories" [value]="categorie.idCategorie">
+										{{ categorie.nomCategorie }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+					</div>
+					<div class="row justify-content-md-between">
+						<div class="form-group col-md-4">
+							<label class="control-label">Quantite
+								<span class="star" style="color: red;">*</span>
+							</label>
+							<input class="form-control" name="quantite" id="quantite" type="number" formControlName="quantite" required="true"/>
+						</div>
+						<div class="form-group col-md-4">
+							<label class="control-label">Prix Unitaire
+								<span class="star" style="color: red;">*</span>
+							</label>
+							<input class="form-control" name="price" id="price" type="number" formControlName="prixUnitaireHT" required="true"/>
+						</div>
+						<!-- <div class="form-group col-md-4">
+							<mat-form-field class="max test">
+								<mat-label>Mode de Paiement</mat-label>
+								<mat-select formControlName="modeDePaiement">
+									<mat-option *ngFor="let modeDePaiement of modeDePaiements" [value]="modeDePaiement.idModePaiement">
+										{{ modeDePaiement.typePaiement }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div> -->
+					</div>
+					<div class="category form-category">
+						<span class="star" style="color: red;">*</span> Required fields
+					</div>
+					<div class="text-center">
+						<button type="submit" class="btn btn-outline-danger btn-fw" matStepperNext>
+						  Selectionner
+						</button>
+					  </div>
+
+				<!-- </div> -->
+			</form>
+		</div>
+	</mat-step>
+	<mat-step>
+		<ng-template matStepLabel>Créer nouvel encaissement</ng-template>
+		<div id="pdf">
+
+			<button (click)="downloadAsPdf('pdf')">Export PDF</button>
+		</div>
+		<img [src]="qrCodeImage" alt="" *ngIf="qrCodeImage">
+		<div class="text-center"><button type="submit" class="btn btn-outline-danger btn-fw" matStepperNext>Finalise Vente</button></div>
+	</mat-step>
+	<mat-step>
+	  <ng-template matStepLabel>Générer facture</ng-template>
+	  You are now done.
+	  <div>
+		<button mat-button matStepperPrevious>Back</button>
+		<!-- <button mat-button>Reset</button> -->
+	  </div>
+	</mat-step>
+  </mat-stepper>

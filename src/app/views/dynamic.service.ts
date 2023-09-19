@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, Observable, Subject, debounceTime, delay, of, switchMap, tap } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 import { SortColumn, SortDirection } from './DynamicSortable.directive';
+import Fuse from 'fuse.js';
+
 
 interface SearchResult<T> {
 	data: T[];
@@ -51,16 +53,30 @@ function sort<T>(
 	}
 }
 
-function matches<T>(item: T, term: string, properties: string[]): boolean {
+function matches<T>(item: T, term: string): boolean {
 	const searchTerm = term.toLowerCase();
-	for (const prop of properties) {
-	  const itemValue = String(item[prop]).toLowerCase(); // Convert to lowercase
+	const keys = Object.keys(item) as Array<keyof T>;
+
+	for (const prop of keys) {
+	  let itemValue = item[prop] as unknown as string;
+
+	  if (itemValue !== null && typeof itemValue === 'object') {
+		itemValue = JSON.stringify(itemValue);
+	  } else if (itemValue !== null) {
+		itemValue = String(itemValue);
+	  } else {
+		continue; // Skip properties with null values
+	  }
+
+	  itemValue = itemValue.toLowerCase(); // Convert to lowercase
+
 	  if (itemValue.includes(searchTerm)) {
 		return true;
 	  }
 	}
 	return false;
   }
+
 
 
 
@@ -163,21 +179,27 @@ export class DynamicService<T> {
 		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 		let propertyType: 'string' | 'number' | 'Date' = 'string'; // Set the default property type
 		if (sortColumn === 'numericProperty') {
-		propertyType = 'number';
+			propertyType = 'number';
 		} else if (sortColumn === 'dateProperty') {
-		propertyType = 'Date';
+			propertyType = 'Date';
 		}
 		// 1. sort
-		// // console.log(this.DATA)
 		let data = sort(this.DATA, sortColumn, sortDirection, propertyType);
 		// // console.log(data.length)
 		// 2. filter
-		data = data.filter((item) => matches(item, searchTerm, ['property1', 'property2'])); // Replace with actual property names
-
+		if (searchTerm)
+		{
+			data = data.filter((item) => {
+				const found = matches(item, searchTerm);
+				return found;
+			  });
+		}
 		const total = data.length;
 		// 3. paginate
 		data = data.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+
 		return of({ data, total });
 	}
+
 
 }

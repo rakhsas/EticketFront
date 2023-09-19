@@ -50,6 +50,18 @@ const routes: Routes = [
       {
         path: 'Clavier',
         loadChildren: () => import('./views/clavier/clavier.module').then(m => m.ClavierModule)
+      },
+      {
+        path: 'Client',
+        loadChildren: () => import('./views/client/client.module').then(m => m.ClientModule)
+      },
+      {
+        path: 'Encaissement',
+        loadChildren: () => import('./views/encaissement/encaissement.module').then(m => m.EncaissementModule)
+      },
+      {
+        path: 'Vente',
+        loadChildren: () => import('./views/ventes/ventes.module').then(m => m.VentesModule)
       }
     ]
   },

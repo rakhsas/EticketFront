@@ -79,6 +79,33 @@ export const ROUTES = [
       { path: 'add', title: 'Ajouter Une Clavier', icon: 'bi bi-plus-square-fill'}
     ]
   },
+  {
+    path: 'Client',
+    title: 'Client',
+    icon: 'bi bi-keyboard',
+    children: [
+      { path: 'list', title: 'Liste Des Clients', icon: 'bi bi-list'},
+      { path: 'add', title: 'Ajouter Un Client', icon: 'bi bi-plus-square-fill'}
+    ]
+  },
+  {
+    path: 'Encaissement',
+    title: 'Encaissement',
+    icon: 'bi bi-keyboard',
+    children: [
+      { path: 'list', title: 'Liste Des Encaissement', icon: 'bi bi-list'},
+      { path: 'add', title: 'Ajouter Un Encaissement', icon: 'bi bi-plus-square-fill'}
+    ]
+  },
+  {
+    path: 'Vente',
+    title: 'Ventes',
+    icon: 'bi bi-person',
+    children: [
+      // { path: 'list', title: 'Liste Des Encaissement', icon: 'bi bi-list'},
+      { path: 'add', title: 'Ajouter Vente', icon: 'bi bi-plus-square-fill'}
+    ]
+  },
 ];
 
 

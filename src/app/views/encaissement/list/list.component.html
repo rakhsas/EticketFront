@@ -19,22 +19,22 @@
 		<thead class="table-primary">
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col" sortable="departement" (sort)="onSort($event)">Nom</th>
-				<th scope="col" sortable="libelle" (sort)="onSort($event)">Type Departement</th>
-				<th scope="col" sortable="departement" (sort)="onSort($event)">Departement Parent</th>
-				<th scope="col">Responsable</th>
+				<th scope="col" sortable="montant" (sort)="onSort($event)">Montant</th>
+				<th scope="col" sortable="avances" (sort)="onSort($event)">Avances</th>
+				<th scope="col" sortable="typePaiement" (sort)="onSort($event)">Type Paiement</th>
 				<th scope="col">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let departement of departements$ | async" (click)="showRow(departement)">
-				<th scope="row">{{departement.departement_id}}</th>
-				<td><ngb-highlight [result]="departement.departement" [term]="service.searchTerm"></ngb-highlight></td>
-				<td><ngb-highlight [result]="departement.typeDepartement.libelle" [term]="service.searchTerm"></ngb-highlight></td>
-				<td><ngb-highlight [result]="departement.departementParent ? departement.departementParent.departement : ''" [term]="service.searchTerm"></ngb-highlight></td>
-				<td><ngb-highlight [result]="departement.responsable?.nomUser" [term]="service.searchTerm"></ngb-highlight></td>
+			<tr *ngFor="let encaissement of encaissements$ | async">
+				<th scope="row">{{encaissement.idEncaissement}}</th>
 				<td>
-				<a class="btn" (click)="openDialog(departement)">
+					<ngb-highlight [result]="encaissement.montant | number" [term]="service.searchTerm"></ngb-highlight>
+				</td>
+				<td><ngb-highlight [result]="encaissement.avances | number" [term]="service.searchTerm"></ngb-highlight></td>
+				<td><ngb-highlight [result]="encaissement.modeDePaiement.typePaiement" [term]="service.searchTerm"></ngb-highlight></td>
+				<td>
+					<a class="btn" (click)="openDialog(encaissement)">
 								<i class="material-icons">edit</i>
 							</a>
 				</td>

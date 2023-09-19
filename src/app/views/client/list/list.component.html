@@ -1,0 +1,62 @@
+<form style="width: 100%;">
+	<div class="mb-3 row">
+		<label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+		<div class="col-xs-3 col-sm-auto">
+			<input
+				id="table-complete-search"
+				type="text"
+				class="form-control"
+				name="searchTerm"
+				[(ngModel)]="service.searchTerm"
+			/>
+		</div>
+		<span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
+		<div class="spinner-border" role="status" *ngIf="service.loading$ | async">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead class="table-primary">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col" sortable="code" (sort)="onSort($event)">Code</th>
+					<th scope="col" sortable="categorieClient" (sort)="onSort($event)">categorie Client</th>
+					<th scope="col" sortable="intitule" (sort)="onSort($event)">intitule</th>
+					<th scope="col" sortable="contactClient" (sort)="onSort($event)">contact Client</th>
+					<th scope="col" sortable="telephone" (sort)="onSort($event)">telephone</th>
+					<th scope="col" sortable="adresse" (sort)="onSort($event)">Adresse</th>
+					<th scope="col" sortable="fax" (sort)="onSort($event)">Fax</th>
+					<th scope="col" sortable="email" (sort)="onSort($event)">email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of clients$ | async">
+					<th scope="row">{{item.clientId}}</th>
+					<td><ngb-highlight [result]="item.code" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="item.categorieClient" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="item.intitule" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="item.contactClient" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="item.telephone" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="item.email" [term]="service.searchTerm"></ngb-highlight></td>
+					<td><ngb-highlight [result]="item.fax" [term]="service.searchTerm"></ngb-highlight></td>
+					<td colspan="8"><ngb-highlight [result]="item.adresse" [term]="service.searchTerm"></ngb-highlight></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="d-flex justify-content-between p-2">
+		<ngb-pagination
+		[collectionSize]="(total$ | async)!"
+		[(page)]="service.page"
+		[pageSize]="service.pageSize"
+		></ngb-pagination>
+
+		<select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+		  <option [ngValue]="2">2 items per page</option>
+		  <option [ngValue]="4">4 items per page</option>
+		  <option [ngValue]="6">6 items per page</option>
+		</select>
+	  </div>
+</form>

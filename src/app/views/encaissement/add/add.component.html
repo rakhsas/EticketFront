@@ -1,0 +1,45 @@
+<form [formGroup]="encaissementForm" (ngSubmit)="onAdd(encaissementForm.value)">
+	<!-- <div class="card-content"> -->
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label class="control-label">Montant
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="montant" id="montant" type="number" formControlName="montant" required="true"/>
+			</div>
+			<div class="form-group col-md-6">
+				<label class="control-label">Avances
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" name="avances" type="text" formControlName="avances" id="avances" required="true"/>
+			</div>
+		</div>
+		<div class="row" style="padding: 15px 0;">
+			<div class="form-group col-md-6" style="padding: 5px 0 5px 0;">
+				  <mat-form-field class="max">
+					<mat-label>Mode de paiement</mat-label>
+					<mat-select formControlName="modeDePaiement">
+					  <mat-option *ngFor="let mdp of ModesDePaiement" [value]="mdp.idModePaiement">{{mdp.typePaiement}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="form-group col-md-6" style="padding: 5px 0 5px 0;">
+				  <mat-form-field class="max">
+					<mat-label>imputations</mat-label>
+					<mat-select formControlName="imputations">
+					  <mat-option *ngFor="let imput of ventes" [value]="imput.idVente">{{imput.nature}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="category form-category">
+			<span class="star" style="color: red;">*</span> Required fields
+		</div>
+		<div class="text-center">
+			<button type="submit" class="btn btn-outline-danger btn-fw">
+			  {{ action === 'Ajouter' ? 'Ajouter' : 'Modifier' }}
+			</button>
+		  </div>
+
+	<!-- </div> -->
+</form>
