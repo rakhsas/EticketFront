@@ -8,4 +8,5 @@ export interface client {
 	fax: string;
 	email: string;
 	contactClient: string;
+	nomComplet: string;
 }

@@ -76,18 +76,66 @@
 	<mat-step>
 		<ng-template matStepLabel>Créer nouvel encaissement</ng-template>
 		<div id="pdf">
-
-			<button (click)="downloadAsPdf('pdf')">Export PDF</button>
+			<div class="container">
+				<div class="card mt-3">
+				  <div class="card-header"> Facture <strong>{{dateVente}}</strong> <span class="float-end"> <strong>Status:</strong> Valid </span> </div>
+				  <div class="card-body">
+					<div class="row mb-5">
+					  <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+						<h6>De:</h6>
+						<div> <strong>Societe</strong> </div>
+						<div>Moroc</div>
+						<div>Adress</div>
+						<div>Email: test@example.com</div>
+						<div>Phone: +212 643 434 555</div>
+					  </div>
+					  <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngIf="client">
+						<h6>à:</h6>
+						<div> <strong>{{client.nomComplet}}</strong> </div>
+						<div>Maroc</div>
+						<div>{{client.adresse}}</div>
+						<div>Email: {{client.email}}</div>
+						<div>Phone: {{client.telephone}}</div>
+					  </div>
+					  <div class="mt-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-lg-end justify-content-md-center justify-content-xs-start">
+						<div class="row align-items-center" style="font-size: 0.9rem;">
+						  <div class="col-auto"> <img [src]="qrCodeImage" alt="" *ngIf="qrCodeImage"> </div>
+						</div>
+					  </div>
+					</div>
+					<div class="row" *ngIf="formData">
+					  <div class="col-lg-4 col-sm-5"> </div>
+					  <div class="col-lg-5 col-sm-6">
+						<table class="table table-clear">
+						  <tbody>
+							<tr>
+							  <td class="left"><strong> Total </strong></td>
+							  <td class="right"> {{ formData.montantTotalHT }} DH</td>
+							</tr>
+							<tr>
+							  <td class="left"><strong>TVA (20%)</strong></td>
+							  <td class="right">{{ (formData.montantTotalHT * 0.2).toFixed(2)}}</td>
+							</tr>
+							<tr>
+							  <td class="left"><strong>Total</strong></td>
+							  <td class="right"><strong>{{ formData.montantTotalHT + (formData.montantTotalHT * 0.2).toFixed(2)}} DH</strong><br></td>
+							</tr>
+						  </tbody>
+						</table>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
 		</div>
-		<img [src]="qrCodeImage" alt="" *ngIf="qrCodeImage">
-		<div class="text-center"><button type="submit" class="btn btn-outline-danger btn-fw" matStepperNext>Finalise Vente</button></div>
+		<div class="text-center"><button type="submit" class="btn btn-outline-danger btn-fw" matStepperNext (click)="downloadAsPdf('pdf')">Finalise Vente</button></div>
 	</mat-step>
 	<mat-step>
-	  <ng-template matStepLabel>Générer facture</ng-template>
-	  You are now done.
-	  <div>
-		<button mat-button matStepperPrevious>Back</button>
-		<!-- <button mat-button>Reset</button> -->
-	  </div>
+		<ng-template matStepLabel>Générer facture</ng-template>
+		<strong> La facture a ete envoye par email </strong>
+		<div>
+			<button mat-button matStepperPrevious>Back</button>
+			<!-- <button mat-button>Reset</button> -->
+		</div>
 	</mat-step>
-  </mat-stepper>
+</mat-stepper>
