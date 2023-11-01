@@ -14,7 +14,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgbTypeaheadModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { DynamicSortableHeader } from '../DynamicSortable.directive';
-import {MatStepperModule} from '@angular/material/stepper';
+import {MatStepper, MatStepperModule} from '@angular/material/stepper';
+import { Select2Module } from 'ng-select2-component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatCheckboxModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    Select2Module
   ],
 })
 export class VentesModule { }

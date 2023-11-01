@@ -1,137 +1,151 @@
-<mat-stepper linear animationDuration="400">
-	<mat-step>
+<mat-stepper orientation="vertical" linear animationDuration="400" #stepper>
+	<mat-step [editable]="editableForm1">
 		<ng-template matStepLabel>Demande choix d'Article et Client</ng-template>
 		<div class="container">
-			<form [formGroup]="venteForm" (ngSubmit)="onAdd(venteForm.value)">
-				<!-- <div class="card-content"> -->
-					<div class="row justify-content-md-between">
-						<div class="form-group col-md-4">
-							<mat-form-field class="max">
-								<mat-label>Client</mat-label>
-								<mat-select formControlName="client">
-									<mat-option *ngFor="let client of clients" [value]="client.clientId">
-										{{ client.contactClient }}
-									</mat-option>
-								</mat-select>
-							</mat-form-field>
-						</div>
-						<div class="form-group col-md-4">
-							<mat-form-field class="max">
-								<mat-label>Artcle</mat-label>
-								<mat-select formControlName="article">
-									<mat-option *ngFor="let article of articles" [value]="article.idArticle">
-										{{ article.designation }}
-									</mat-option>
-								</mat-select>
-							</mat-form-field>
-						</div>
-						<div class="form-group col-md-4">
-							<mat-form-field class="max">
-								<mat-label>categorie Article</mat-label>
-								<mat-select formControlName="categorie">
-									<mat-option *ngFor="let categorie of categories" [value]="categorie.idCategorie">
-										{{ categorie.nomCategorie }}
-									</mat-option>
-								</mat-select>
-							</mat-form-field>
-						</div>
+			<form [formGroup]="venteForm" (ngSubmit)="onAdd(venteForm.value, stepper)" enctype="multipart/form-data">
+				<br>
+				<div class="row justify-content-md-between">
+					<div class="form-group col-md-4 mb-3">
+						<label class="control-label">Client
+							<span class="star" style="color: red;">*</span>
+						</label>
+						<select2
+							[data]="data1"
+							formControlName="client"
+							(update)="update('value1', $event)"
+							(change)="change('change1', $event)"
+							(search)="search1('search1')"
+							resettable
+							id="selec2-1"
+							placeholder="Clients *">
+						</select2>
 					</div>
-					<div class="row justify-content-md-between">
-						<div class="form-group col-md-4">
-							<label class="control-label">Quantite
-								<span class="star" style="color: red;">*</span>
-							</label>
-							<input class="form-control" name="quantite" id="quantite" type="number" formControlName="quantite" required="true"/>
-						</div>
-						<div class="form-group col-md-4">
-							<label class="control-label">Prix Unitaire
-								<span class="star" style="color: red;">*</span>
-							</label>
-							<input class="form-control" name="price" id="price" type="number" formControlName="prixUnitaireHT" required="true"/>
-						</div>
-						<!-- <div class="form-group col-md-4">
-							<mat-form-field class="max test">
-								<mat-label>Mode de Paiement</mat-label>
-								<mat-select formControlName="modeDePaiement">
-									<mat-option *ngFor="let modeDePaiement of modeDePaiements" [value]="modeDePaiement.idModePaiement">
-										{{ modeDePaiement.typePaiement }}
-									</mat-option>
-								</mat-select>
-							</mat-form-field>
-						</div> -->
+					<div class="form-group col-md-4 mb-3">
+						<label class="control-label">Articles
+							<span class="star" style="color: red;">*</span>
+						</label>
+						<select2
+							[data]="data2"
+							formControlName="article"
+							(update)="update('value1', $event)"
+							(change)="change('change1', $event)"
+							(search)="search2('search1')"
+							resettable
+							id="selec2-1"
+							></select2>
 					</div>
-					<div class="category form-category">
-						<span class="star" style="color: red;">*</span> Required fields
+					<div class="form-group col-md-4 mb-3">
+						<!-- <select class="form-select form-select-lg mb-3" formControlName="categorie" [required]="true" aria-label=".form-select-lg example">
+							<option selected disabled>Categorie</option>
+							<option *ngFor="let categorie of categories" [value]="categorie.idCategorie">
+								{{ categorie.nomCategorie }}
+							</option>
+						</select> -->
+						<label class="control-label">Article Categorie
+							<span class="star" style="color: red;">*</span>
+						</label>
+						<select2
+							[data]="data3"
+							formControlName="categorie"
+							(update)="update('value1', $event)"
+							(change)="change('change1', $event)"
+							(search)="search3('search1')"
+							resettable
+							id="selec2-1"
+							></select2>
 					</div>
-					<div class="text-center">
-						<button type="submit" class="btn btn-outline-danger btn-fw" matStepperNext>
-						  Selectionner
-						</button>
-					  </div>
-
-				<!-- </div> -->
+				</div>
+				<div class="row justify-content-md-between">
+					<div class="form-group col-md-4 mb-3">
+						<label class="control-label">Quantite
+							<span class="star" style="color: red;">*</span>
+						</label>
+						<input class="form-control" name="quantite" id="quantite" type="number"
+							formControlName="quantite" required="true" />
+					</div>
+					<div class="form-group col-md-4 mb-3">
+						<label class="control-label">Prix Unitaire
+							<span class="star" style="color: red;">*</span>
+						</label>
+						<input class="form-control" name="price" id="price" type="number"
+							formControlName="prixUnitaireHT" required="true" />
+					</div>
+					<div class="form-group col-md-4 mb-3">
+						<label for="dateLimiteValidite">Date Limite de Validité
+							<span class="star" style="color: red;">*</span>
+						</label>
+						<input class="form-control" type="date" id="dateLimiteValidite" name="dateLimiteValidite"
+							formControlName="dateLimiteValidite" required="true" />
+					</div>
+				</div>
+				<div class="category form-category">
+					<span class="star" style="color: red;">*</span> Required fields
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-outline-danger btn-fw" [disabled]="!venteForm.valid">
+						Selectionner
+					</button>
+				</div>
 			</form>
 		</div>
 	</mat-step>
 	<mat-step>
-		<ng-template matStepLabel>Créer nouvel encaissement</ng-template>
+		<!-- <ng-template matStepLabel>Créer nouvel encaissement</ng-template> -->
 		<div id="pdf">
 			<div class="container">
 				<div class="card mt-3">
-				  <div class="card-header"> Facture <strong>{{dateVente}}</strong> <span class="float-end"> <strong>Status:</strong> Valid </span> </div>
-				  <div class="card-body">
-					<div class="row mb-5">
-					  <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-						<h6>De:</h6>
-						<div> <strong>Societe</strong> </div>
-						<div>Moroc</div>
-						<div>Adress</div>
-						<div>Email: test@example.com</div>
-						<div>Phone: +212 643 434 555</div>
-					  </div>
-					  <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngIf="client">
-						<h6>à:</h6>
-						<div> <strong>{{client.nomComplet}}</strong> </div>
-						<div>Maroc</div>
-						<div>{{client.adresse}}</div>
-						<div>Email: {{client.email}}</div>
-						<div>Phone: {{client.telephone}}</div>
-					  </div>
-					  <div class="mt-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-lg-end justify-content-md-center justify-content-xs-start">
-						<div class="row align-items-center" style="font-size: 0.9rem;">
-						  <div class="col-auto"> <img [src]="qrCodeImage" alt="" *ngIf="qrCodeImage"> </div>
+					<div class="row">
+						<div class="col-md-5 col-sm-11 mt-2">
+							<img src="assets/logo.png" width="120" alt="Logo de l'entreprise"
+								style="margin-left: 20px;"><br><br>
+							<h1 style="margin-left: 20px;">{{ designationArticle }}</h1><br>
+							<h1 style="margin-left: 20px;">{{ dateLimiteValidite | date:'full' }}</h1>
+							<br><br>
+							<div class="row" *ngIf="formData">
+								<div class="col-lg-5 col-sm-6">
+									<table class="table table-clear" style="margin-right: 20px;">
+										<tbody>
+											<tr>
+												<td class="left"><strong> Prix HT </strong></td>
+												<td class="right"> {{ formData.montantTotalHT }} DH</td>
+											</tr>
+											<tr>
+												<td class="left"><strong>TVA (20%)</strong></td>
+												<td class="right">{{ (formData.montantTotalHT * 0.2).toFixed(2)}}</td>
+											</tr>
+											<tr>
+												<td class="left"><strong>Total</strong></td>
+												<td class="right"><strong>{{ (formData.montantTotalHT *
+														1.2).toFixed(2)}} DH</strong><br></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
-					  </div>
+						<div class="col-md-5 col-sm-11 mt-2 text-end">
+							<h1 style="margin-right: 20px;">Nom Societe</h1>
+							<img [src]="qrCodeImage" alt="" *ngIf="qrCodeImage">
+						</div>
 					</div>
-					<div class="row" *ngIf="formData">
-					  <div class="col-lg-4 col-sm-5"> </div>
-					  <div class="col-lg-5 col-sm-6">
-						<table class="table table-clear">
-						  <tbody>
-							<tr>
-							  <td class="left"><strong> Total </strong></td>
-							  <td class="right"> {{ formData.montantTotalHT }} DH</td>
-							</tr>
-							<tr>
-							  <td class="left"><strong>TVA (20%)</strong></td>
-							  <td class="right">{{ (formData.montantTotalHT * 0.2).toFixed(2)}}</td>
-							</tr>
-							<tr>
-							  <td class="left"><strong>Total</strong></td>
-							  <td class="right"><strong>{{ formData.montantTotalHT + (formData.montantTotalHT * 0.2).toFixed(2)}} DH</strong><br></td>
-							</tr>
-						  </tbody>
-						</table>
-					  </div>
-					</div>
-				  </div>
+					<br><br><br>
+					<hr>
+					<!-- Informations en liste -->
+					<h3>Comment utiliser ce bon d'achat</h3>
+					<ol>
+						<li>Imprimer ce ticket</li>
+						<li>Vérifier les conditions de l’offre</li>
+						<li>Présentez-vous avec ce ticket</li>
+						<li>Amusez-vous bien !</li>
+					</ol>
 				</div>
 			</div>
 		</div>
-		<div class="text-center"><button type="submit" class="btn btn-outline-danger btn-fw" matStepperNext (click)="downloadAsPdf('pdf')">Finalise Vente</button></div>
+		<div class="text-center"><button type="submit" class="btn btn-outline-danger btn-fw" matStepperNext
+				(click)="downloadAsPdf('pdf')">Finalise Vente</button></div>
 	</mat-step>
 	<mat-step>
-		<ng-template matStepLabel>Générer facture</ng-template>
+		<!-- <ng-template matStepLabel>Générer facture</ng-template> -->
 		<strong> La facture a ete envoye par email </strong>
 		<div>
 			<button mat-button matStepperPrevious>Back</button>

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContainersComponent } from './containers/containers.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
-import { UserModule } from './views/user/user.module';
+import { AuthGuardService } from './auth.guard';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {
@@ -11,14 +12,18 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: '',
     component: ContainersComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'dashboard',
         component: DashboardComponent
-      }
-      ,
+      },
       {
         path: 'user',
         loadChildren: () => import('./views/user/user.module').then(m => m.UserModule),
@@ -62,7 +67,7 @@ const routes: Routes = [
       {
         path: 'Vente',
         loadChildren: () => import('./views/ventes/ventes.module').then(m => m.VentesModule)
-      }
+      },
     ]
   },
 

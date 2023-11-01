@@ -9,25 +9,20 @@
 				<input class="form-control" name="code" id="code" type="text" formControlName="code" required="true"/>
 			</div>
 			<div class="form-group col-md-4">
-				<label class="control-label">Categorie Client
-					<span class="star" style="color: red;">*</span>
-				</label>
-				<input class="form-control" name="categorieClient" id="categorieClient" type="text" formControlName="categorieClient" required="true"/>
-			</div>
-			<div class="form-group col-md-4">
 				<label class="control-label">intitule
 					<span class="star" style="color: red;">*</span>
 				</label>
 				<input class="form-control" name="intitule" id="intitule" type="text" formControlName="intitule" required="true"/>
 			</div>
-		</div>
-		<div class="row justify-content-md-between">
 			<div class="form-group col-md-4">
 				<label class="control-label">Adresse
 					<span class="star" style="color: red;">*</span>
 				</label>
 				<input class="form-control" name="adresse" id="adresse" type="text" formControlName="adresse" required="true"/>
 			</div>
+		</div>
+		<div class="row justify-content-md-between">
+			
 			<div class="form-group col-md-4">
 				<label class="control-label">telephone
 					<span class="star" style="color: red;">*</span>
@@ -40,14 +35,32 @@
 				</label>
 				<input class="form-control" name="fax" id="fax" type="text" formControlName="fax" required="true"/>
 			</div>
-		</div>
-		<div class="row justify-content-md-between">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label class="control-label">Email
 					<span class="star" style="color: red;">*</span>
 				</label>
 				<input class="form-control" name="email" id="email" type="text" formControlName="email" required="true"/>
 			</div>
+		</div>
+		<br>
+		<div class="row justify-content-md-between">
+			<div class="form-group col-md-6 mb-3">
+				<!-- <label class="control-label">Categorie Client
+					<span class="star" style="color: red;">*</span>
+				</label>
+				<input class="form-control" formControlName="categorieClient" required="true"/> -->
+				<select2
+					[data]="data"
+					formControlName="categorieClient"
+					(update)="update('value1', $event)"
+					(change)="change('change1', $event)"
+					(search)="search('search1')"
+					resettable
+					id="selec2-1"
+					placeholder="Clients *">
+				</select2>
+			</div>
+			
 			<div class="form-group col-md-6">
 				<label class="control-label">contactClient
 					<span class="star" style="color: red;">*</span>

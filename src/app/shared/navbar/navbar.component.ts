@@ -22,7 +22,7 @@ export class NavbarComponent {
 	constructor(
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		private cdr: ChangeDetectorRef
+		private cdr: ChangeDetectorRef,
 	) {
 		this.router.events.pipe(
 			filter(event => event instanceof NavigationEnd)
@@ -35,6 +35,11 @@ export class NavbarComponent {
 	}
 	ngOnInit(): void {
 
+	}
+	logout() {
+		if (localStorage.getItem('user'))
+			localStorage.removeItem('user');
+		this.router.navigate(['/login'])
 	}
 	private getPageTitle(route: ActivatedRoute): string {
 		let currentRoute = route;

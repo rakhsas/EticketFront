@@ -16,6 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgbTypeaheadModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { DynamicSortableHeader } from '../DynamicSortable.directive';
+import { Select2Module } from 'ng-select2-component';
 
 
 
@@ -47,6 +48,7 @@ import { DynamicSortableHeader } from '../DynamicSortable.directive';
     MatCheckboxModule,
     MatSnackBarModule,
     ReactiveFormsModule,
+    Select2Module
   ],
   exports: [ClientRoutingModule],
 })

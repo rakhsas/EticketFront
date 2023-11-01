@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   title: 'Locat Env Heading',
-  apiURL: 'http://localhost:8080/'
+  apiURL: 'http://localhost:8080/api/'
 };

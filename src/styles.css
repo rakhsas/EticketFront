@@ -1,12 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200&display=swap');
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
 :root {
   --primary-bg-color: #007bff;      /* Dark blue, suitable for headings and primary elements */
   --secondary-bg-color: #17a2b8;    /* Teal, for buttons and highlights */
   --background-color: #f8f9fa;      /* Light gray, for background */
   --text-color: #343a40;            /* Dark gray, for text */
-  --success-color: #28a745;         /* Green, for success or positive feedback */
+  --success-color: #28a745;
+	--select2-single-height: 50px;
+  --select2-selection-border-color: #dee2e6;
+  --select2-selection-border-radius: 0.5rem;
+  --select2-arrow-color: #000;
+  --select2-selection-choice-hover-close-color: #dee2e6;
+    --select2-option-highlighted-background: #9ab7e6;
+    --select2-selection-focus-border-color: #dee2e6;
+  /* Green, for success or positive feedback */
+
+
+  --primary-color: #272727;
+  --text: white;
+  --white: #FFFFFF;
+  --sidebar-primary: #605DFF;
+  --sidebar-primary-light: #5DA8FF;
+  --sidebar-primary-hover: #605DFF10;
+  --sidebar-background: #FCFCFD;
+  --background: #F1F3FF;
+  --text-link: #424662;
+  --headline: #7686BC;
+  --cta-background: #EBF3FF;
+  --cta-background-darker: #CFD5FF;
+  --cta-background-border: #CDD2F3;
+  --cta-text: #1C2035;
+  --neutral: #E6E8F0;
+  --expand-button: #4A516D;
+  --logout: #FA7575;
+  --text: #303651;
+  --text-lighter: #697089;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  background-color: #C7D2DC;
+  font-size: 16px;
+  padding: 16px;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .dark-theme {
   --primary-bg-color: #121212; /* Dark background color */

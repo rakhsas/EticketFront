@@ -1,0 +1,69 @@
+<section class="h-100">
+	<div class="svg-background">
+		<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+			<path fill="#FA4D56" d="M41.1,-39.6C49.7,-22,50.6,-5.1,49.2,15.3C47.8,35.8,44.1,59.8,32,65.1C19.9,70.5,-0.5,57,-19.1,45.8C-37.7,34.5,-54.4,25.4,-56.7,13.5C-59.1,1.6,-47,-13.1,-35.1,-31.4C-23.2,-49.8,-11.6,-71.7,2.3,-73.6C16.3,-75.4,32.5,-57.2,41.1,-39.6Z" transform="translate(100 100)" />
+		  </svg>
+	  </div>
+	<div class="container h-100">
+		<div class="row justify-content-sm-center h-100" >
+			<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+				<div class="text-center my-5">
+					<img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="logo" width="100">
+				</div>
+				<div class="card shadow-lg">
+					<div class="card-body p-5">
+						<h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+						<form #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit(userForm)">
+							<div class="form-floating mb-3">
+								<input type="email" class="form-control" name="email" id="floatingInput"
+									[(ngModel)]="model.email" #email="ngModel"
+									[ngClass]="{ 'is-invalid': userForm.submitted && email.invalid, 'is-valid': userForm.submitted && email.valid }"
+									placeholder="name@example.com" required>
+								<label for="floatingInput">Email address</label>
+								<div class="valid-feedback">Valid Email.</div>
+								<div class="invalid-feedback">Please fill out the email.</div>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="motDePasse"
+								[(ngModel)]="model.motDePasse" #motDePasse="ngModel" minlength="8"
+								[ngClass]="{ 'is-invalid': userForm.submitted && motDePasse.invalid, 'is-valid': userForm.submitted && motDePasse.valid }"
+									required>
+								<label for="floatingPassword">Password</label>
+								<div class="valid-feedback">Valid Password.</div>
+								<div class="invalid-feedback">Please fill out the password.</div>
+							</div>
+							<div *ngIf="errorMessage" class="text-danger mb-3">
+								{{ errorMessage }}
+							  </div>
+							  
+							<div class="d-flex align-items-left mb-3">
+								<div class="form-check">
+									<input type="checkbox" name="remember" id="remember" class="form-check-input">
+									<label for="remember" class="form-check-label">Remember Me</label>
+								</div>
+								<div class="mb-2 w-100">
+									<a routerLink="/forgot" class="float-end">
+										Forgot Password?
+									</a>
+								</div>
+							</div>
+							<div class="d-flex justify-content-center align-items-center">
+								<button class="btn btn-primary d-flex justify-content-center align-items-center">
+									Login
+								</button>
+							</div>
+						</form>
+					</div>
+					<div class="card-footer py-3 border-0">
+						<div class="text-center">
+							Don't have an account? <a routerLink="/signup" class="text-dark">Create One</a>
+						</div>
+					</div>
+				</div>
+				<div class="text-center mt-5 text-muted">
+					Copyright &copy; 2017-{{ year }}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
